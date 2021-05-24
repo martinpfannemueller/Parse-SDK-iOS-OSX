@@ -1869,6 +1869,9 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         _pfinternal_state = [self._state copyByMutatingWithBlock:^(PFMutableObjectState *state) {
             state.objectId = objectId;
         }];
+        
+        // Add changed objectId to changeset
+        [self _setObject:objectId forKey:@"objectId" onlyIfDifferent:YES];
 
         [self _notifyObjectIdChangedFrom:oldObjectId toObjectId:objectId];
     }
