@@ -22,6 +22,7 @@ extern NSString *const _ParseDefaultServerURLString;
 @property (nonatomic, copy, readwrite) NSString *server;
 
 @property (nonatomic, assign, readwrite, getter=isLocalDatastoreEnabled) BOOL localDatastoreEnabled;
+@property (nonatomic, assign, readwrite, getter=isAllowCustomObjectId) BOOL allowCustomObjectId;
 
 @property (nullable, nonatomic, copy, readwrite) NSString *applicationGroupIdentifier;
 @property (nullable, nonatomic, copy, readwrite) NSString *containingApplicationBundleIdentifier;
