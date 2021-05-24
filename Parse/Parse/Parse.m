@@ -194,7 +194,10 @@ static ParseClientConfiguration *currentParseConfiguration_;
 ///--------------------------------------
 
 + (BOOL)isAllowCustomObjectIds {
-    return currentParseConfiguration_.allowCustomObjectId;
+    if (!currentParseManager_) {
+        return currentParseConfiguration_.allowCustomObjectId;
+    }
+    return [self currentConfiguration].allowCustomObjectId;
 }
 
 ///--------------------------------------
