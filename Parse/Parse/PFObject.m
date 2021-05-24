@@ -1463,7 +1463,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                     return @YES;
                 }
                 
-                if([Parse isAllowCustomObjectIds]){
+                if([Parse isAllowCustomObjectIds] && !self._state.objectId){
                     NSError *error = [PFErrorUtilities errorWithCode:kPFErrorMissingObjectId message:@"ObjectId must not be null"];
                     return [BFTask taskWithError:error];
                 }
@@ -1812,7 +1812,7 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 - (BFTask<PFVoid> *)_validateSaveEventuallyAsync {
-    if([Parse isAllowCustomObjectIds]){
+    if([Parse isAllowCustomObjectIds] && !self._state.objectId){
         NSError *error = [PFErrorUtilities errorWithCode:kPFErrorMissingObjectId message:@"ObjectId must not be null"];
         return [BFTask taskWithError:error];
     }
