@@ -76,7 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  The default value is `NO`.
  */
-@property (nonatomic, assign, getter=allowCustomObjectId) BOOL allowCustomObjectId;
+@property (nonatomic, assign, getter=isAllowCustomObjectId) BOOL allowCustomObjectId;
 
 ///--------------------------------------
 #pragma mark - Enabling Extensions Data Sharing
