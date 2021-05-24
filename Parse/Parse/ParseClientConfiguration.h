@@ -68,6 +68,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, getter=isLocalDatastoreEnabled) BOOL localDatastoreEnabled PF_TV_UNAVAILABLE;
 
 ///--------------------------------------
+#pragma mark - Enabling Custom Object Ids
+///--------------------------------------
+
+/**
+ Whether or not to enable support for custom object ids in the SDK.
+
+ The default value is `NO`.
+ */
+@property (nonatomic, assign, getter=allowCustomObjectId) BOOL allowCustomObjectId;
+
+///--------------------------------------
 #pragma mark - Enabling Extensions Data Sharing
 ///--------------------------------------
 
@@ -147,6 +158,17 @@ NS_ASSUME_NONNULL_BEGIN
  The default value is `NO`.
  */
 @property (nonatomic, assign, readonly, getter=isLocalDatastoreEnabled) BOOL localDatastoreEnabled;
+
+///--------------------------------------
+#pragma mark - Enabling Custom Object Ids
+///--------------------------------------
+
+/**
+ Whether or not to enable support for custom object ids in the SDK.
+
+ The default value is `NO`.
+ */
+@property (nonatomic, assign, readonly, getter=isAllowCustomObjectId) BOOL allowCustomObjectId;
 
 ///--------------------------------------
 #pragma mark - Enabling Extensions Data Sharing

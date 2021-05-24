@@ -190,6 +190,14 @@ static ParseClientConfiguration *currentParseConfiguration_;
 }
 
 ///--------------------------------------
+#pragma mark - Custom ObjectIds
+///--------------------------------------
+
++ (BOOL)isAllowCustomObjectIds {
+    return currentParseConfiguration_.allowCustomObjectId;
+}
+
+///--------------------------------------
 #pragma mark - User Interface
 ///--------------------------------------
 

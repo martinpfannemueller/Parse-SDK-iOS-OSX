@@ -115,6 +115,7 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
             [self.server isEqualToString:other.server] &&
             self.fileUploadController == other.fileUploadController &&
             self.localDatastoreEnabled == other.localDatastoreEnabled &&
+            self.allowCustomObjectId == other.allowCustomObjectId &&
             [PFObjectUtilities isObject:self.applicationGroupIdentifier equalToObject:other.applicationGroupIdentifier] &&
             [PFObjectUtilities isObject:self.containingApplicationBundleIdentifier equalToObject:other.containingApplicationBundleIdentifier] &&
             [PFObjectUtilities isObject:self.URLSessionConfiguration equalToObject:other.URLSessionConfiguration] &&
@@ -134,6 +135,7 @@ NSString *const _ParseDefaultServerURLString = @"https://api.parse.com/1";
     configuration->_server = [self.server copy];
     configuration->_fileUploadController = self->_fileUploadController;
     configuration->_localDatastoreEnabled = self->_localDatastoreEnabled;
+    configuration->_allowCustomObjectId = self->_allowCustomObjectId;
     configuration->_applicationGroupIdentifier = [self->_applicationGroupIdentifier copy];
     configuration->_containingApplicationBundleIdentifier = [self->_containingApplicationBundleIdentifier copy];
     configuration->_networkRetryAttempts = self->_networkRetryAttempts;

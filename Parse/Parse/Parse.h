@@ -153,6 +153,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, class) BOOL isLocalDatastoreEnabled PF_TV_UNAVAILABLE;
 
 ///--------------------------------------
+#pragma mark - Allowing Custom ObjectIds
+///--------------------------------------
+
+/**
+ Allow custom ObjectIds in your application.`.
+ */
++ (void)allowCustomObjectIds PF_TV_UNAVAILABLE;
+
+/**
+ Flag that indicates whether Custom ObjectIds are allowed.
+ 
+ @return `YES` if Custom ObjectIds are allowed, otherwise `NO`.
+ */
+@property (nonatomic, readonly, class) BOOL isAllowCustomObjectIds PF_TV_UNAVAILABLE;
+
+///--------------------------------------
 #pragma mark - Enabling Extensions Data Sharing
 ///--------------------------------------
 

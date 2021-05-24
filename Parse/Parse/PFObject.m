@@ -13,6 +13,8 @@
 #import "PFObject+Deprecated.h"
 #import "PFObjectSubclassingController.h"
 
+#import <Parse/Parse.h>
+
 #import <objc/message.h>
 #import <objc/objc-sync.h>
 #import <objc/runtime.h>
@@ -1460,6 +1462,11 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
                 if (![self isDirty:YES]) {
                     return @YES;
                 }
+                
+                if([Parse isAllowCustomObjectIds]){
+                    NSError *error = [PFErrorUtilities errorWithCode:kPFErrorMissingObjectId message:@"ObjectId must not be null"];
+                    return [BFTask taskWithError:error];
+                }
 
                 [self _objectWillSave];
 
@@ -1532,18 +1539,31 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
         NSDictionary *parameters = [self _convertToDictionaryForSaving:changes withObjectEncoder:encoder error:error];
         PFPreconditionBailOnError(parameters, error, nil);
 
-        if (self._state.objectId) {
-            return [PFRESTObjectCommand updateObjectCommandForObjectState:self._state
+        if(!self._state.objectId){
+            return [PFRESTObjectCommand createObjectCommandForObjectState:self._state
                                                                   changes:parameters
                                                          operationSetUUID:changes.uuid
-                                                             sessionToken:sessionToken];
+                                                            sessionToken:sessionToken];
+        }else{
+            if([Parse isAllowCustomObjectIds]){
+                if(self._state.createdAt == nil){
+                    return [PFRESTObjectCommand createObjectCommandForObjectState:self._state
+                                                                          changes:parameters
+                                                                 operationSetUUID:changes.uuid
+                                                                     sessionToken:sessionToken];
+                }else{
+                    return [PFRESTObjectCommand updateObjectCommandForObjectState:self._state
+                                                                          changes:parameters
+                                                                 operationSetUUID:changes.uuid
+                                                                     sessionToken:sessionToken];
+                }
+            }else{
+                return [PFRESTObjectCommand updateObjectCommandForObjectState:self._state
+                                                                      changes:parameters
+                                                             operationSetUUID:changes.uuid
+                                                                 sessionToken:sessionToken];
+            }
         }
-
-        return [PFRESTObjectCommand createObjectCommandForObjectState:self._state
-                                                              changes:parameters
-                                                     operationSetUUID:changes.uuid
-                                                         sessionToken:sessionToken];
-
     }
 }
 
@@ -1792,6 +1812,11 @@ static void PFObjectAssertValueIsKindOfValidClass(id object) {
 }
 
 - (BFTask<PFVoid> *)_validateSaveEventuallyAsync {
+    if([Parse isAllowCustomObjectIds]){
+        NSError *error = [PFErrorUtilities errorWithCode:kPFErrorMissingObjectId message:@"ObjectId must not be null"];
+        return [BFTask taskWithError:error];
+    }
+    
     return [BFTask taskWithResult:nil];
 }
 

@@ -40,6 +40,7 @@
         configuration.server = @"http://localhost";
         configuration.localDatastoreEnabled = YES;
         configuration.networkRetryAttempts = 1337;
+        configuration.allowCustomObjectId = YES
     }];
 
     XCTAssertEqualObjects(configuration.applicationId, @"foo");
@@ -47,6 +48,7 @@
     XCTAssertEqualObjects(configuration.server, @"http://localhost");
     XCTAssertTrue(configuration.localDatastoreEnabled);
     XCTAssertEqual(configuration.networkRetryAttempts, 1337);
+    XCTAssertTrue(configuration.allowCustomObjectId);
 }
 
 - (void)testEqual {
