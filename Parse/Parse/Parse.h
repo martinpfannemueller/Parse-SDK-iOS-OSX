@@ -166,7 +166,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return `YES` if Custom ObjectIds are allowed, otherwise `NO`.
  */
-@property (nonatomic, readonly, class) BOOL isAllowCustomObjectIds PF_TV_UNAVAILABLE;
+@property (nonatomic, readonly, class) BOOL isAllowCustomObjectIds;
 
 ///--------------------------------------
 #pragma mark - Enabling Extensions Data Sharing
